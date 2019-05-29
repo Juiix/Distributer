@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Distributer.Components
+namespace DistributerLib.Components
 {
     public class NodeConfig
     {
@@ -11,6 +11,5 @@ namespace Distributer.Components
         public string Root;
 
         public string Executable;
-        
     }
 }

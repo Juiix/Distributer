@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DistributerLib.Components;
+using System;
 using System.IO;
+using Utils.NET.IO;
 
 namespace Distributer
 {
@@ -9,6 +11,39 @@ namespace Distributer
 
         static void Main(string[] args)
         {
+            BitWriter w = new BitWriter();
+            w.Write(true);
+
+            w.Write((byte)123);
+            w.Write((ushort)12345);
+            w.Write((uint)1234567);
+            w.Write((ulong)12345678987654321);
+
+            w.Write((sbyte)123);
+            w.Write((short)12345);
+            w.Write((int)1234567);
+            w.Write((long)12345678987654321);
+
+            w.Write(123.456f);
+            w.Write(123.456);
+
+            var d = w.GetData();
+            BitReader r = new BitReader(d);
+            Console.WriteLine(r.ReadBool());
+
+            Console.WriteLine(r.ReadUInt8());
+            Console.WriteLine(r.ReadUInt16());
+            Console.WriteLine(r.ReadUInt32());
+            Console.WriteLine(r.ReadUInt64());
+
+            Console.WriteLine(r.ReadInt8());
+            Console.WriteLine(r.ReadInt16());
+            Console.WriteLine(r.ReadInt32());
+            Console.WriteLine(r.ReadInt64());
+
+            Console.WriteLine(r.ReadFloat());
+            Console.WriteLine(r.ReadDouble());
+
             if (args.Length == 0)
             {
                 Console.WriteLine("Invalid arguments provided, correct usage:");
@@ -31,7 +66,18 @@ namespace Distributer
                 return;
             }
 
+            ConfigFile config;
+            try
+            {
+                config = ConfigFile.LoadFromFile(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return;
+            }
 
+            Distributer.Distribute(config);
         }
     }
 }
