@@ -10,9 +10,9 @@ namespace DistributerLib.Net
 {
     public class DistributerConnection : NetConnection<DPacket>
     {
-        public DistributerConnection(Socket socket, DPacketFactory packetFactory) : base(socket, packetFactory)
+        public DistributerConnection(Socket socket) : base(socket)
         {
-            
+            SetPacketFactory(new DPacketFactory(this));
         }
     }
 }

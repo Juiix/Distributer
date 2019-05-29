@@ -7,6 +7,13 @@ namespace DistributerLib.Net.Packets
 {
     public class DPacketFactory : PacketFactory<DPacket>
     {
+        private DistributerConnection connection;
+
+        public DPacketFactory(DistributerConnection connection)
+        {
+            this.connection = connection;
+        }
+
         public override void HandlePacket(DPacket packet)
         {
 
