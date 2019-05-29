@@ -7,9 +7,6 @@ namespace DistributerLib.Net.Packets
 {
     public class DPacketFactory : PacketFactory<DPacket>
     {
-        public override void HandlePacket(DPacket packet)
-        {
-
-        }
+        
     }
 }
