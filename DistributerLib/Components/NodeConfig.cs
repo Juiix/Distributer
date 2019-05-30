@@ -6,10 +6,14 @@ namespace DistributerLib.Components
 {
     public class NodeConfig
     {
-        public string Host;
+        public string name;
 
-        public string Root;
+        public string host;
 
-        public string Executable;
+        public string root;
+
+        public string executable;
+
+        public IList<string> dependencies;
     }
 }

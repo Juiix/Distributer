@@ -1,4 +1,6 @@
 ﻿using DistributerLib.Components;
+using DistributerLib.Net;
+using DistributerLib.Net.Packets;
 using System;
 using System.IO;
 using Utils.NET.IO;
@@ -12,19 +14,6 @@ namespace Distributer
 
         static void Main(string[] args)
         {
-            BitWriter w = new BitWriter();
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-            w.Write(true);
-
-            var d = w.GetData();
-            Log.Write(d.size);
-
             if (args.Length == 0)
             {
                 Log.Error("Invalid arguments provided, correct usage:");

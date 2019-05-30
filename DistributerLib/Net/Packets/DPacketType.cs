@@ -7,6 +7,6 @@ namespace DistributerLib.Net.Packets
     public enum DPacketType : byte
     {
         None = 0,
-
+        Test = 1
     }
 }

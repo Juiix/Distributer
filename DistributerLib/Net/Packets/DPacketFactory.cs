@@ -13,10 +13,5 @@ namespace DistributerLib.Net.Packets
         {
             this.connection = connection;
         }
-
-        public override void HandlePacket(DPacket packet)
-        {
-
-        }
     }
 }

@@ -1,47 +1,39 @@
 ﻿using DistributerLib.Net;
 using DistributerLib.Net.Packets;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Utils.NET.Logging;
 using Utils.NET.Net.Tcp;
 
 namespace DistributerNode
 {
-    public interface IDistributerDelegate
+    public class DistributerListener : NetListener<DistributerConnection, DPacket>
     {
+        private ConcurrentDictionary<NetConnection<DPacket>, DistributerConnection> connections = new ConcurrentDictionary<NetConnection<DPacket>, DistributerConnection>();
 
-    }
-
-    public class DistributerListener : NetConnectionFactory<DistributerConnection, DPacket>
-    {
-
-        private NetListener<DistributerConnection, DPacket> listener;
-
-        public DistributerListener()
+        public DistributerListener() : base(DistributerConnection.Port)
         {
-            listener = new NetListener<DistributerConnection, DPacket>(12321, this);
-        }
 
-        public override DistributerConnection CreateConnection(Socket socket)
-        {
-            return new DistributerConnection(socket);
         }
 
         public override void HandleConnection(DistributerConnection connection)
         {
+            connection.SetDisconnectCallback(HandleDisconnection);
+            if (connection.Disconnected) return;
+            connections.TryAdd(connection, connection);
+            connection.ReadAsync();
 
+            Log.Write("Received distributer connection", ConsoleColor.Green);
         }
 
-        public void Start()
+        private void HandleDisconnection(NetConnection<DPacket> net)
         {
-            listener.Start();
-        }
-
-        public void Stop()
-        {
-            listener.Stop();
+            if (!connections.TryRemove(net, out var connection)) return;
+            Log.Error("Disconnected from distributer");
         }
     }
 }

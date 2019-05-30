@@ -13,6 +13,6 @@ namespace DistributerLib.Components
             return JsonConvert.DeserializeObject<ConfigFile>(File.ReadAllText(file));
         }
 
-        public IList<NodeConfig> Configs;
+        public IList<NodeConfig> configs;
     }
 }
