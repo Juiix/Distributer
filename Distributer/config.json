@@ -4,7 +4,7 @@
     {
       "name": "Local",
       "host": "127.0.0.1",
-      "root": "C:/Users/tucke/Desktop/DistributerTest",
+      "root": "../../../DistributerTest",
       "executable": "test.bat"
     }
   ]

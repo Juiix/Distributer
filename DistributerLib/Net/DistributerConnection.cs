@@ -13,6 +13,8 @@ namespace DistributerLib.Net
     {
         public static int Port = 12321;
 
+        public const string Packages_Path = "Packages";
+
         private PacketHandlerFactory<DistributerConnection, DPacketHandler<DPacket>, DPacket> _handlers = new PacketHandlerFactory<DistributerConnection, DPacketHandler<DPacket>, DPacket>();
 
         public DistributerConnection(Socket socket) : base(socket)
