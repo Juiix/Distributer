@@ -21,7 +21,7 @@ namespace DistributerLib.Net.Handlers
             else
                 Log.Write("This node does not need to be updated", ConsoleColor.Cyan);
 
-            connection.SendToken(response);
+            connection.SendTokenResponse(response);
         }
 
         private bool CheckNeedsUpdate(string name, byte[] checksum)
