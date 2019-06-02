@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Utils.NET.Logging;
 
 namespace DistributerLib.Net.Handlers
 {
@@ -15,15 +16,25 @@ namespace DistributerLib.Net.Handlers
             var response = new UpdateFileResponse();
             response.Token = packet.Token;
 
-            response.success = CacheUpdate(packet.packageName, packet.file, packet.checksum);
+            response.success = CacheUpdate(packet.packageName, packet.file, packet.checksum, connection);
+
+            if (response.success)
+            {
+                Log.Write("Update files successfully cached", ConsoleColor.Green);
+            }
 
             connection.SendTokenResponse(response);
         }
 
         private bool CacheUpdate(string packageName, byte[] file, byte[] checksum, DistributerConnection connection)
         {
-            if (!GenerateChecksum(file).SequenceEqual(checksum)) return false; // file received was corrupted
+            if (!GenerateChecksum(file).SequenceEqual(checksum))
+            {
+                Log.Error("File received contains an invalid checksum");
+                return false; // file received was corrupted
+            }
 
+            Log.Write("Caching update files...");
             return connection.CacheUpdate(packageName, file);
         }
 

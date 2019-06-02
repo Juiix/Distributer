@@ -25,9 +25,8 @@ namespace DistributerNode
             connection.SetDisconnectCallback(HandleDisconnection);
             if (connection.Disconnected) return;
             connections.TryAdd(connection, connection);
-            connection.ReadAsync();
-
             Log.Write("Received distributer connection", ConsoleColor.Green);
+            connection.ReadAsync();
         }
 
         private void HandleDisconnection(NetConnection<DPacket> net)

@@ -384,6 +384,7 @@ namespace Distributer
             stateCount = updatables.Count();
             foreach (var node in updatables)
             {
+                node.retryCount = 0;
                 SendUpdate(node);
             }
         }
@@ -397,6 +398,7 @@ namespace Distributer
             var update = new UpdateFile();
             update.checksum = node.checksum;
             update.file = File.ReadAllBytes(packages[node.config]);
+            update.packageName = node.config.name;
             node.connection.SendToken(update, ReceivedUpdateResponse);
         }
 
@@ -408,7 +410,13 @@ namespace Distributer
 
             if (!response.success)
             {
-                Log.Write($"{node.config.name} failed to receive the update!", ConsoleColor.Red);
+                if (node.retryCount++ < 5)
+                {
+                    Log.Write($"{node.config.name} failed to receive the update! Retrying...", ConsoleColor.Red);
+                    SendUpdate(node);
+                }
+                else
+                    Log.Write($"{node.config.name} failed to receive the update!", ConsoleColor.Red);
                 return;
             }
 
