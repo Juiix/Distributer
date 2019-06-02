@@ -15,7 +15,7 @@ namespace DistributerLib.Net.Handlers
             var response = new UpdateFileResponse();
             response.Token = packet.Token;
 
-            response.success = CacheUpdate(packet.packageName, packet.file, packet.checksum);
+            response.success = CacheUpdate(packet.packageName, packet.file, packet.checksum, connection);
 
             connection.SendTokenResponse(response);
         }

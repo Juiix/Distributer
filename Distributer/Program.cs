@@ -4,6 +4,7 @@ using DistributerLib.Net.Packets;
 using System;
 using System.IO;
 using Utils.NET.IO;
+using Utils.NET.IO.Tbon;
 using Utils.NET.Logging;
 
 namespace Distributer
@@ -14,6 +15,10 @@ namespace Distributer
 
         static void Main(string[] args)
         {
+            var obj = Tbon.DynamicParse("config.tbon");
+
+            Log.Write(((TObject)obj["configs"])[1]["name"].Value<string>());
+
             if (args.Length == 0)
             {
                 Log.Error("Invalid arguments provided, correct usage:");
@@ -23,7 +28,7 @@ namespace Distributer
 
             string path = args[0];
 
-            if (!path.EndsWith(".json"))
+            if (!path.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
             {
                 Log.Error("Invalid config file.");
                 Log.Error("Congif file must be of type .json");
