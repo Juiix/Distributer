@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributer", "Distributer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributerNode", "DistributerNode\DistributerNode.csproj", "{00D00B39-023A-4D38-8DA3-70B4B7E881B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributerLib", "DistributerLib\DistributerLib.csproj", "{76E5AB57-1080-47BA-B910-348D95F95E4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributerLib", "DistributerLib\DistributerLib.csproj", "{76E5AB57-1080-47BA-B910-348D95F95E4F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils.NET", "..\..\Libraries\Utils.NET\Utils.NET\Utils.NET.csproj", "{921A32D8-EDDC-41FD-A613-3854C2C91DDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tbon.NET", "..\..\Libraries\Tbon.NET\Tbon.NET\Tbon.NET.csproj", "{C6390C22-883E-454E-A2A0-49FE43384CCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{921A32D8-EDDC-41FD-A613-3854C2C91DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{921A32D8-EDDC-41FD-A613-3854C2C91DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{921A32D8-EDDC-41FD-A613-3854C2C91DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6390C22-883E-454E-A2A0-49FE43384CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6390C22-883E-454E-A2A0-49FE43384CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6390C22-883E-454E-A2A0-49FE43384CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6390C22-883E-454E-A2A0-49FE43384CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

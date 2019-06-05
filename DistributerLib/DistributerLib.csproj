@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Tbon.NET\Tbon.NET\Tbon.NET.csproj" />
     <ProjectReference Include="..\..\..\Libraries\Utils.NET\Utils.NET\Utils.NET.csproj" />
   </ItemGroup>
 

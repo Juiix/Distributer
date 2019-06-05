@@ -2,9 +2,10 @@
 using DistributerLib.Net;
 using DistributerLib.Net.Packets;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using Tbon.NET;
 using Utils.NET.IO;
-using Utils.NET.IO.Tbon;
 using Utils.NET.Logging;
 
 namespace Distributer
@@ -15,9 +16,9 @@ namespace Distributer
 
         static void Main(string[] args)
         {
-            var obj = Tbon.DynamicParse("config.tbon");
+            var obj = TbonConvert.DynamicParse("textures.tbon");
 
-            Log.Write(((TObject)obj["configs"])[1]["name"].Value<string>());
+            Log.Write(obj.ToString());
 
             if (args.Length == 0)
             {

@@ -4,12 +4,9 @@ configs:
     host: "127.0.0.1"
     root: "../../../DistributerTest"
     executable: "test.bat"
-    test: 2
-    test2: 2.0
     
     
     name: "Local-2"
     host: "127.0.0.1"
     root: "../../../DistributerTest"
     executable:"test.bat"
-test: "this is a test"
